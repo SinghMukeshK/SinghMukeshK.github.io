@@ -1,0 +1,44 @@
+<html>
+	<head>
+			<title>Html Page with Api Data </title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script type="text/javascript" lang="javascript">
+				function GetData(){
+					$.ajax({
+						url:"http://api.pandeypramod.com/api/MasterApi",
+						success: function(result){
+							let table;
+							for(var i=0;i<result.length;i++){
+								table=table+ '<tr> <td>' + result[i].Id + '</td>' + 
+													'<td>' + result[i].Description + '</td>' + 
+													'<td>' + result[i].Unit.Description + '</td>' +
+													'<td>' + result[i].ItemGroup.Description + '</td>' +
+													'<td>' + result[i].HSNMaster.HSNDescription + '</td>' + 
+													'</tr>'
+							}
+							$("#tblData").append(table);
+						}
+					});
+				}
+			</script>
+	</head>
+	<body>
+		<input type="button" value="Get Data" onClick="GetData();" />
+		<div>
+			<table id="tblData">
+				<thead>
+					<tr>
+						<th> ItemCode </th>
+						<th> Description </th>
+						<th> Unit </th>
+						<th> Item Group </th>
+						<th> HSNDescription </th>
+					</tr>
+				</thead>
+				<tbody>
+						
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
