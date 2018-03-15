@@ -10,15 +10,19 @@
 							let table;
 							for(var i=0;i<result.length;i++){
 								table=table+ '<tr> <td>' + result[i].Id + '</td>' + 
-													'<td>' + result[i].Description + '</td>' + 
-													'<td>' + result[i].Unit.Description + '</td>' +
-													'<td>' + result[i].ItemGroup.Description + '</td>' +
-													'<td>' + result[i].HSNMaster.HSNDescription + '</td>' + 
-													'</tr>'
+										'<td>' + result[i].Description + '</td>' + 
+										'<td>' + result[i].Unit.Description + '</td>' +
+										'<td>' + result[i].ItemGroup.Description + '</td>' +
+										'<td>' + result[i].HSNMaster.HSNDescription + '</td>' + 
+					'<td><button type="button" class="btn btn-sm btn-success" onClick=getItemDetail('+result[i].Id+');">Get Details</button></td>' +
+										'</tr>'
 							}
 							$("#tblData").append(table);
 						}
 					});
+				}
+				function getItemDetail(itemCode){
+					alert(itemCode);
 				}
 			</script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
