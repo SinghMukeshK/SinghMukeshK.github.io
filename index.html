@@ -80,6 +80,19 @@
 				function getItemDetail(itemCode){
 					alert(itemCode);
 				}
+				function SendMessage(){
+					$.ajax({
+						url:"http://",
+						method:'POST',
+						data:{
+							name:$("#txtName").value,
+							email:$("#txtEmail").value,
+							message:$("#txtMessage").value							
+						},
+						success: function(result){
+						}
+					});
+				}
 			</script>
 			<style>
 				body {position: relative; }
@@ -146,7 +159,7 @@
 					<div class="row">
 						<div class="col-sm-1 col-md-1 col-lg-1"></div>
 						<div class="col-sm-1 col-md-1 col-lg-1">
-							<button type="submit" class="btn btn-primary btn-sm">Send your message</button>
+							<button type="button" id="SendMessage();" class="btn btn-primary btn-sm">Send your message</button>
 						</div>
 					</div>
 			  </form>
