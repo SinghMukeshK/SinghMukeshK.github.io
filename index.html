@@ -1,21 +1,77 @@
+<!DOCTYPE html>
 <html>
 	<head>
 			<title>Html Page with Api Data </title>
+			<title>Bootstrap Example</title>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 			<script type="text/javascript" lang="javascript">
+				$(document).ready(function(){			
+					$("#aContactUs").on('click', function(){
+						$("#divContent").load("http://localhost:8080/api/BusinessEventQueue");
+					});	
+					
+					function Customer() {
+						this.Name= "Mukesh",
+						this.Address= "Mumbai",
+						function ShowCustomer(){
+							console.log('This is Customer '+ this.name +' . His address is ' + this.address);
+						}
+					}
+
+					Customer.prototype.greetCustomer = function(){
+						console.log('Hello '+ this.Name +', Welcome to '+ this.Address);
+					}
+
+					Customer.prototype.callCustomer = function () {
+						console.log('Calling ' + this.Name +'.....')
+					}
+					
+					Customer.prototype.showCustomer=function(){
+							console.log('This is Customer '+ this.Name +' . His address is ' + this.Address);
+					}
+					
+					var customerObject=new Customer();
+					debugger;
+					customerObject.Name="Ajay";
+					customerObject.greetCustomer();
+					customerObject.callCustomer();
+					customerObject.showCustomer();
+					
+					
+					function Order(){
+						
+					}
+					Order.prototype.validate=function(){
+					
+					}
+				});
 				function GetData(){
 					$.ajax({
 						url:"http://api.pandeypramod.com/api/MasterApi",
+						data:{},
 						success: function(result){
-							let table;
+							let table='<thead>'+
+											'<tr>'+
+												'<th> ItemCode </th>'+
+												'<th> Description </th>'+
+												'<th> Unit </th>'+
+												'<th> Item Group </th>'+
+												'<th> HSNDescription </th>'+
+											'</tr>'+
+										+ '</thead>'
 							for(var i=0;i<result.length;i++){
-								table=table+ '<tr> <td>' + result[i].Id + '</td>' + 
-										'<td>' + result[i].Description + '</td>' + 
-										'<td>' + result[i].Unit.Description + '</td>' +
-										'<td>' + result[i].ItemGroup.Description + '</td>' +
-										'<td>' + result[i].HSNMaster.HSNDescription + '</td>' + 
-					'<td><button type="button" class="btn btn-sm btn-success" onClick="getItemDetail('+result[i].Id+');">Get Details</button></td>' +
-										'</tr>'
+								table=table + '<tr>'+ 
+												'<td>' + result[i].Id + '</td>' + 
+												'<td>' + result[i].Description + '</td>' + 
+												'<td>' + result[i].Unit.Description + '</td>' +
+												'<td>' + result[i].ItemGroup.Description + '</td>' +
+												'<td>' + result[i].HSNMaster.HSNDescription + '</td>' + 
+												'<td><button type="button" class="btn btn-sm btn-success" onClick="getItemDetail('+result[i].Id+');">Get Details</button></td>' +
+												'</tr>'
 							}
 							$("#tblData").append(table);
 						}
@@ -25,26 +81,101 @@
 					alert(itemCode);
 				}
 			</script>
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<style>
+				body {position: relative; }
+				#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
+				#section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
+				#section3ContactUs {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+				#section41 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
+				#section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+			</style>
 	</head>
-	<body class="container">
-		<input type="button" class="btn btn-primary btn-sm" value="Get Data" onClick="GetData();" />
-		<a href="./contactUs.html">Contact Us </a>
-		<div>
-			<table id="tblData" class="table table-stripped table-condensed">
-				<thead>
-					<tr>
-						<th> ItemCode </th>
-						<th> Description </th>
-						<th> Unit </th>
-						<th> Item Group </th>
-						<th> HSNDescription </th>
-					</tr>
-				</thead>
-				<tbody>
-						
-				</tbody>
-			</table>
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>                        
+			  </button>
+			  <a class="navbar-brand" href="#">Mukesh Singh</a>
+			</div>
+			<div>
+			  <div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+				  <li><a href="#section1">Home</a></li>
+				  <li><a href="#section2">About Us</a></li>
+				  <li><a href="#section3ContactUs">Contact Us</a></li>
+				  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">APIs <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					  <li><a href="#section41">Test API</a></li>
+					  <li><a href="#section42">Test API 2</a></li>
+					</ul>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </div>
+		</nav> 
+		
+		<div id="section1" class="container-fluid">
+		 
+		</div>
+		<div id="section2" class="container-fluid">
+		  <h1>About Us</h1>
+		  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+		  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+		</div>
+		<div id="section3ContactUs" class="container-fluid">
+		  <h1>Contact Us</h1>
+		  <div>
+			  <form action="" method="POST">
+					<div class="row">
+						<div class="col-sm-1 col-md-1 col-lg-1">Name </div>
+						<div class="col-sm-2 col-md-2 col-lg-2"><input type="text" id="txtName" class="form-control"/> </div>
+						<div class="col-sm-1 col-md-1 col-lg-1">Email </div>
+						<div class="col-sm-2 col-md-2 col-lg-2"><input type="text" id="txtEmail" class="form-control"/> </div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-1 col-md-1 col-lg-1">Message </div>
+						<div class="col-sm-5 col-md-5 col-lg-5"><textarea id="txtMessage" class="form-control"></textarea> </div>
+						</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-1 col-md-1 col-lg-1"></div>
+						<div class="col-sm-1 col-md-1 col-lg-1">
+							<button type="submit" class="btn btn-primary btn-sm">Send your message</button>
+						</div>
+					</div>
+			  </form>
+		 </div>
+		</div>
+		<div id="section41" class="container-fluid">
+		 <h1>Test API</h1> 
+		 <input type="button" class="btn btn-primary btn-sm" value="Get Data" onClick="GetData();" />
+			 <div>
+				<table style="height:100px;" id="tblData" class="table table-stripped table-condensed">
+					<thead>
+						<tr>
+							<th> ItemCode </th>
+							<th> Description </th>
+							<th> Unit </th>
+							<th> Item Group </th>
+							<th> HSNDescription </th>
+						</tr>
+					</thead>
+					<tbody>
+							
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="section42" class="container-fluid">
+		  <h1>Section 4 Submenu 2</h1>
+		  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+		  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
 		</div>
 	</body>
 </html>
